@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A-Level Ranked Points Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .subject {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>A-Level Ranked Points Calculator</h1>
+        <form id="rankedPointsForm">
+            <div class="subject">
+                <label for="h2Subject1">H2 Subject 1: </label>
+                <select id="h2Subject1" name="h2Subject1">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h2Subject2">H2 Subject 2: </label>
+                <select id="h2Subject2" name="h2Subject2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h1GP">H1 GP: </label>
+                <select id="h1GP" name="h1GP">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <button type="button" onclick="calculateRankedPoints()">Calculate Ranked Points</button>
+        </form>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function calculateRankedPoints() {
+            const gradePoints = {
+                'A': 20,
+                'B': 17.5,
+                'C': 15,
+                'D': 12.5,
+                'E': 10,
+                'S': 5,
+                'U': 0
+            };
+            
+            let totalPoints = 0;
+            const h2Subject1 = document.getElementById('h2Subject1').value;
+            const h2Subject2 = document.getElementById('h2Subject2').value;
+            const h1GP = document.getElementById('h1GP').value;
+
+            totalPoints += gradePoints[h2Subject1];
+            totalPoints += gradePoints[h2Subject2];
+            totalPoints += gradePoints[h1GP] / 2;  // H1 subjects are half the points of H2 subjects
+
+            document.getElementById('result').innerText = `The ranked points for the given grades are: ${totalPoints}`;
+        }
+    </script>
+</body>
+</html>
