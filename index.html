@@ -77,8 +77,44 @@
                 </select>
             </div>
             <div class="subject">
+                <label for="h2Subject3">H2 Subject 3: </label>
+                <select id="h2Subject3" name="h2Subject3">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="worstH2H1">Worst H2/H1: </label>
+                <select id="worstH2H1" name="worstH2H1">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
                 <label for="h1GP">H1 GP: </label>
                 <select id="h1GP" name="h1GP">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h1MTL">H1 MTL: </label>
+                <select id="h1MTL" name="h1MTL">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -105,16 +141,29 @@
                 'U': 0
             };
             
-            let totalPoints = 0;
-            const h2Subject1 = document.getElementById('h2Subject1').value;
-            const h2Subject2 = document.getElementById('h2Subject2').value;
-            const h1GP = document.getElementById('h1GP').value;
+            const h2Subject1 = gradePoints[document.getElementById('h2Subject1').value];
+            const h2Subject2 = gradePoints[document.getElementById('h2Subject2').value];
+            const h2Subject3 = gradePoints[document.getElementById('h2Subject3').value];
+            const worstH2H1 = gradePoints[document.getElementById('worstH2H1').value] / 2;
+            const h1GP = gradePoints[document.getElementById('h1GP').value] / 2;
+            const h1MTL = gradePoints[document.getElementById('h1MTL').value] / 2;
 
-            totalPoints += gradePoints[h2Subject1];
-            totalPoints += gradePoints[h2Subject2];
-            totalPoints += gradePoints[h1GP] / 2;  // H1 subjects are half the points of H2 subjects
+            // Computation 1
+            const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP;
 
-            document.getElementById('result').innerText = `The ranked points for the given grades are: ${totalPoints}`;
+            // Computation 2
+            const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1) / 80) * 70;
+
+            // Computation 3
+            const computation3 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1MTL) / 90) * 70;
+
+            // Computation 4
+            const computation4 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + h1MTL) / 80) * 70;
+
+            // Calculate the highest ranked points
+            const rankedPoints = Math.max(computation1, computation2, computation3, computation4);
+
+            document.getElementById('result').innerText = `The ranked points for the given grades are: ${rankedPoints.toFixed(2)}`;
         }
     </script>
 </body>
