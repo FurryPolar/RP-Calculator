@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Level Ranked Points Calculator for 2026 and Beyond</title>
+    <title>A-Level Ranked Points Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,7 +51,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>A-Level Ranked Points Calculator</h1>
+        <h1>A-Level Ranked Points Calculator for 2025</h1>
         <form id="rankedPointsForm1">
             <div class="subject">
                 <label for="h2Subject1_1">H2 Subject 1: </label>
@@ -125,13 +125,25 @@
                     <option value="U">U</option>
                 </select>
             </div>
+            <div class="subject">
+                <label for="h1PW_1">H1 PW: </label>
+                <select id="h1PW_1" name="h1PW_1">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
             <button type="button" onclick="calculateRankedPoints(1)">Calculate Ranked Points</button>
         </form>
         <p id="result"></p>
     </div>
 
     <div class="container">
-        <h1>A-Level Ranked Points Calculator</h1>
+        <h1>A-Level Ranked Points Calculator for 2026 and Beyond</h1>
         <form id="rankedPointsForm2">
             <div class="subject">
                 <label for="h2Subject1_2">H2 Subject 1: </label>
@@ -209,7 +221,6 @@
         </form>
         <p id="result2"></p>
     </div>
-
     <script>
         function calculateRankedPoints(calculatorNumber) {
             const gradePoints = {
@@ -221,29 +232,35 @@
                 'S': 5,
                 'U': 0
             };
-
+    
             const h2Subject1 = gradePoints[document.getElementById('h2Subject1_' + calculatorNumber).value];
             const h2Subject2 = gradePoints[document.getElementById('h2Subject2_' + calculatorNumber).value];
             const h2Subject3 = gradePoints[document.getElementById('h2Subject3_' + calculatorNumber).value];
             const worstH2H1 = gradePoints[document.getElementById('worstH2H1_' + calculatorNumber).value] / 2;
             const h1GP = gradePoints[document.getElementById('h1GP_' + calculatorNumber).value] / 2;
             const h1MTL = gradePoints[document.getElementById('h1MTL_' + calculatorNumber).value] / 2;
-
-            // Computation 1
-            const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP;
-
-            // Computation 2
-            const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1) / 80) * 70;
-
-            // Computation 3
-            const computation3 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1MTL) / 90) * 70;
-
-            // Computation 4
-            const computation4 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + h1MTL) / 80) * 70;
-
-            // Calculate the highest ranked points
-            const rankedPoints = Math.max(computation1, computation2, computation3, computation4);
-
+    
+            let h1PW;
+            if (calculatorNumber === 1) {
+                h1PW = gradePoints[document.getElementById('h1PW_1').value] / 2;
+            }
+    
+            // Computations for 2025 and for 2026 and beyond
+            let rankedPoints;
+            if (calculatorNumber === 1) {
+                // Computations for 2025
+                const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW;
+                const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW + h1MTL) / 100) * 90;
+                rankedPoints = Math.max(computation1, computation2);
+            } else {
+                // Computations for 2026 and beyond
+                const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP;
+                const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1) / 80) * 70;
+                const computation3 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1MTL) / 90) * 70;
+                const computation4 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + h1MTL) / 80) * 70;
+                rankedPoints = Math.max(computation1, computation2, computation3, computation4);
+            }
+    
             document.getElementById('result' + (calculatorNumber === 1 ? '' : '2')).innerText = `The ranked points for the given grades are: ${rankedPoints.toFixed(2)}`;
         }
     </script>
