@@ -248,19 +248,16 @@
             // Computations for 2025 and for 2026 and beyond
             let rankedPoints;
             if (calculatorNumber === 1) {
-                // Computations for 2025
                 const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW;
                 const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW + h1MTL) / 100) * 90;
                 rankedPoints = Math.max(computation1, computation2);
             } else {
-                // Computations for 2026 and beyond
                 const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP;
                 const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1) / 80) * 70;
                 const computation3 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1MTL) / 90) * 70;
                 const computation4 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + h1MTL) / 80) * 70;
                 rankedPoints = Math.max(computation1, computation2, computation3, computation4);
             }
-    
             document.getElementById('result' + (calculatorNumber === 1 ? '' : '2')).innerText = `The rank points for the given grades are: ${rankedPoints.toFixed(2)}`;
         }
     </script>
