@@ -232,32 +232,35 @@
                 'S': 5,
                 'U': 0
             };
-        
+    
             const h2Subject1 = gradePoints[document.getElementById('h2Subject1_' + calculatorNumber).value];
             const h2Subject2 = gradePoints[document.getElementById('h2Subject2_' + calculatorNumber).value];
             const h2Subject3 = gradePoints[document.getElementById('h2Subject3_' + calculatorNumber).value];
             const worstH2H1 = gradePoints[document.getElementById('worstH2H1_' + calculatorNumber).value] / 2;
             const h1GP = gradePoints[document.getElementById('h1GP_' + calculatorNumber).value] / 2;
             const h1MTL = gradePoints[document.getElementById('h1MTL_' + calculatorNumber).value] / 2;
-        
+    
             let h1PW;
             if (calculatorNumber === 1) {
                 h1PW = gradePoints[document.getElementById('h1PW_1').value] / 2;
             }
-        
+    
             // Computations for 2025 and for 2026 and beyond
             let rankedPoints;
             if (calculatorNumber === 1) {
-                const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW;
-                const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW + h1MTL) / 100) * 90;
-                rankedPoints = Math.max(computation1, computation2);
+                // 2025 system
+                const score1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1PW;
+                const score2 = (score1 + h1MTL) / 100 * 90;
+                rankedPoints = Math.max(score1, score2);
             } else {
-                const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + worstH2H1 + h1GP;
-                const computation2 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1) / 80) * 70;
-                const computation3 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + worstH2H1 + h1MTL) / 90) * 70;
-                const computation4 = ((h2Subject1 + h2Subject2 + h2Subject3 + h1GP + h1MTL) / 80) * 70;
-                rankedPoints = Math.max(computation1, computation2, computation3, computation4);
+                // 2026 onwards system
+                const score1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP;
+                const score2 = (score1 + h1MTL) / 80 * 70;
+                const score3 = (score1 + worstH2H1) / 80 * 70;
+                const score4 = (score1 + h1MTL + worstH2H1) / 90 * 70;
+                rankedPoints = Math.max(score1, score2, score3, score4);
             }
+    
             document.getElementById('result' + (calculatorNumber === 1 ? '' : '2')).innerText = `The rank points for the given grades are: ${rankedPoints.toFixed(2)}`;
         }
     </script>
