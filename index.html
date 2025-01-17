@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Level Ranked Points Calculator</title>
+    <title>A-Level Rank Points Calculator</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -217,7 +217,7 @@
                     <option value="U">U</option>
                 </select>
             </div>
-            <button type="button" onclick="calculateRankedPoints(2)">Calculate Ranked Points</button>
+            <button type="button" onclick="calculateRankedPoints(2)">Calculate Rank Points</button>
         </form>
         <p id="result2"></p>
     </div>
@@ -261,7 +261,7 @@
                 rankedPoints = Math.max(computation1, computation2, computation3, computation4);
             }
     
-            document.getElementById('result' + (calculatorNumber === 1 ? '' : '2')).innerText = `The ranked points for the given grades are: ${rankedPoints.toFixed(2)}`;
+            document.getElementById('result' + (calculatorNumber === 1 ? '' : '2')).innerText = `The rank points for the given grades are: ${rankedPoints.toFixed(2)}`;
         }
     </script>
 </body>
