@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A-Level Ranked Points Calculator</title>
+    <title>A-Level Ranked Points Calculator for 2026 and Beyond</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -18,6 +18,7 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
         }
         .subject {
             margin-bottom: 15px;
@@ -42,7 +43,7 @@
         button:hover {
             background-color: #0056b3;
         }
-        #result {
+        #result, #result2 {
             margin-top: 20px;
             font-size: 1.2em;
         }
@@ -51,10 +52,10 @@
 <body>
     <div class="container">
         <h1>A-Level Ranked Points Calculator</h1>
-        <form id="rankedPointsForm">
+        <form id="rankedPointsForm1">
             <div class="subject">
-                <label for="h2Subject1">H2 Subject 1: </label>
-                <select id="h2Subject1" name="h2Subject1">
+                <label for="h2Subject1_1">H2 Subject 1: </label>
+                <select id="h2Subject1_1" name="h2Subject1_1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -65,8 +66,8 @@
                 </select>
             </div>
             <div class="subject">
-                <label for="h2Subject2">H2 Subject 2: </label>
-                <select id="h2Subject2" name="h2Subject2">
+                <label for="h2Subject2_1">H2 Subject 2: </label>
+                <select id="h2Subject2_1" name="h2Subject2_1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -77,8 +78,8 @@
                 </select>
             </div>
             <div class="subject">
-                <label for="h2Subject3">H2 Subject 3: </label>
-                <select id="h2Subject3" name="h2Subject3">
+                <label for="h2Subject3_1">H2 Subject 3: </label>
+                <select id="h2Subject3_1" name="h2Subject3_1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -89,8 +90,8 @@
                 </select>
             </div>
             <div class="subject">
-                <label for="worstH2H1">Worst H2/H1: </label>
-                <select id="worstH2H1" name="worstH2H1">
+                <label for="worstH2H1_1">Worst H2/H1: </label>
+                <select id="worstH2H1_1" name="worstH2H1_1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -101,8 +102,8 @@
                 </select>
             </div>
             <div class="subject">
-                <label for="h1GP">H1 GP: </label>
-                <select id="h1GP" name="h1GP">
+                <label for="h1GP_1">H1 GP: </label>
+                <select id="h1GP_1" name="h1GP_1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -113,8 +114,8 @@
                 </select>
             </div>
             <div class="subject">
-                <label for="h1MTL">H1 MTL: </label>
-                <select id="h1MTL" name="h1MTL">
+                <label for="h1MTL_1">H1 MTL: </label>
+                <select id="h1MTL_1" name="h1MTL_1">
                     <option value="A">A</option>
                     <option value="B">B</option>
                     <option value="C">C</option>
@@ -124,13 +125,93 @@
                     <option value="U">U</option>
                 </select>
             </div>
-            <button type="button" onclick="calculateRankedPoints()">Calculate Ranked Points</button>
+            <button type="button" onclick="calculateRankedPoints(1)">Calculate Ranked Points</button>
         </form>
         <p id="result"></p>
     </div>
 
+    <div class="container">
+        <h1>A-Level Ranked Points Calculator</h1>
+        <form id="rankedPointsForm2">
+            <div class="subject">
+                <label for="h2Subject1_2">H2 Subject 1: </label>
+                <select id="h2Subject1_2" name="h2Subject1_2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h2Subject2_2">H2 Subject 2: </label>
+                <select id="h2Subject2_2" name="h2Subject2_2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h2Subject3_2">H2 Subject 3: </label>
+                <select id="h2Subject3_2" name="h2Subject3_2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="worstH2H1_2">Worst H2/H1: </label>
+                <select id="worstH2H1_2" name="worstH2H1_2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h1GP_2">H1 GP: </label>
+                <select id="h1GP_2" name="h1GP_2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <div class="subject">
+                <label for="h1MTL_2">H1 MTL: </label>
+                <select id="h1MTL_2" name="h1MTL_2">
+                    <option value="A">A</option>
+                    <option value="B">B</option>
+                    <option value="C">C</option>
+                    <option value="D">D</option>
+                    <option value="E">E</option>
+                    <option value="S">S</option>
+                    <option value="U">U</option>
+                </select>
+            </div>
+            <button type="button" onclick="calculateRankedPoints(2)">Calculate Ranked Points</button>
+        </form>
+        <p id="result2"></p>
+    </div>
+
     <script>
-        function calculateRankedPoints() {
+        function calculateRankedPoints(calculatorNumber) {
             const gradePoints = {
                 'A': 20,
                 'B': 17.5,
@@ -140,13 +221,13 @@
                 'S': 5,
                 'U': 0
             };
-            
-            const h2Subject1 = gradePoints[document.getElementById('h2Subject1').value];
-            const h2Subject2 = gradePoints[document.getElementById('h2Subject2').value];
-            const h2Subject3 = gradePoints[document.getElementById('h2Subject3').value];
-            const worstH2H1 = gradePoints[document.getElementById('worstH2H1').value] / 2;
-            const h1GP = gradePoints[document.getElementById('h1GP').value] / 2;
-            const h1MTL = gradePoints[document.getElementById('h1MTL').value] / 2;
+
+            const h2Subject1 = gradePoints[document.getElementById('h2Subject1_' + calculatorNumber).value];
+            const h2Subject2 = gradePoints[document.getElementById('h2Subject2_' + calculatorNumber).value];
+            const h2Subject3 = gradePoints[document.getElementById('h2Subject3_' + calculatorNumber).value];
+            const worstH2H1 = gradePoints[document.getElementById('worstH2H1_' + calculatorNumber).value] / 2;
+            const h1GP = gradePoints[document.getElementById('h1GP_' + calculatorNumber).value] / 2;
+            const h1MTL = gradePoints[document.getElementById('h1MTL_' + calculatorNumber).value] / 2;
 
             // Computation 1
             const computation1 = h2Subject1 + h2Subject2 + h2Subject3 + h1GP;
@@ -163,7 +244,7 @@
             // Calculate the highest ranked points
             const rankedPoints = Math.max(computation1, computation2, computation3, computation4);
 
-            document.getElementById('result').innerText = `The ranked points for the given grades are: ${rankedPoints.toFixed(2)}`;
+            document.getElementById('result' + (calculatorNumber === 1 ? '' : '2')).innerText = `The ranked points for the given grades are: ${rankedPoints.toFixed(2)}`;
         }
     </script>
 </body>
